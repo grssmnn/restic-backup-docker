@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Handle SIGTERM and SIGINT
+trap 'echo "Received signal to stop, shutting down..."; kill -TERM $tail_pid; exit 0' TERM INT
+
 echo "Starting container ..."
 
 if [ -n "${NFS_TARGET}" ]; then
@@ -43,4 +46,9 @@ crond
 
 echo "Container started."
 
-exec "$@"
+# Start tail in background and get its PID
+tail -f /var/log/cron.log & 
+tail_pid=$!
+
+# Wait for tail to be terminated
+wait $tail_pid

@@ -37,7 +37,7 @@ else
 fi
 
 if [ "$containers_to_stop_total" != "0" ]; then
-  info "Stopping containers"
+  logLast "Stopping containers"
   docker stop $containers_to_stop
 fi
 
@@ -103,8 +103,8 @@ if [ -n "${MAILX_ARGS}" ]; then
 fi
 
 if [ "$containers_to_stop_total" != "0" ]; then
-  info "Starting containers back up"
-  docker start $containers_to_stop
+    logLast "Starting containers back up"
+    docker start $containers_to_stop
 fi
 
 if [ -f "/hooks/post-backup.sh" ]; then

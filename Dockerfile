@@ -21,6 +21,7 @@ RUN \
     rc-update add docker boot
 
 ENV RESTIC_REPOSITORY=/mnt/restic
+ENV RESTIC_BACKUP_DIR=/data
 ENV RESTIC_PASSWORD=""
 ENV RESTIC_TAG=""
 ENV NFS_TARGET=""

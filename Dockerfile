@@ -52,5 +52,5 @@ VOLUME /data
 
 COPY src/ /bin/
 
-ENTRYPOINT ["/bin/backup.sh"]
+ENTRYPOINT ["/bin/entrypoint.sh"]
 CMD ["tail","-fn0","/var/log/cron.log"]
